@@ -10,8 +10,8 @@ const { credentials } = require('./config');
 //create app
 const app = express();
 
-//setup MongoDb
-require('./mongodb')
+//setup Postgres
+require('./db/pg')
 
 //configurations
 app.use(cors())
