@@ -6,11 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ff891905-1380-4035-8b2a-1b7387cd8b60" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/db/pg-init.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/pg-init.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/lib/handlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/lib/handlers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/mongodb.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,6 +55,9 @@
       <workItem from="1610221816137" duration="252000" />
       <workItem from="1610346892021" duration="537000" />
       <workItem from="1610347439238" duration="3000" />
+      <workItem from="1610386971085" duration="1809000" />
+      <workItem from="1610406051587" duration="108000" />
+      <workItem from="1610406206862" duration="13034000" />
     </task>
     <servers />
   </component>

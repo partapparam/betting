@@ -15,8 +15,10 @@ require('./db/pg')
 
 //configurations
 app.use(cors())
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+//for application/json
+app.use(express.json());
+//for application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
 app.use(expressSession({
     resave: false,
     saveUninitialized: false,
@@ -24,6 +26,9 @@ app.use(expressSession({
 }));
 
 require('./routes')(app)
+//create the 404 and server error middleware handlers
+app.use((req, res) => res.json({message: 'Error - 404', data: 'Not Found'}))
+app.use((err, req, res, next) => res.json({message: 'Error - 500', data: 'Server Error'}))
 
 //start server function
 function startServer(port) {
