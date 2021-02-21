@@ -1,4 +1,13 @@
-const db = require('../db/pg')
+const db = require('../db/pg');
+const jwt = require('jsonwebtoken');
+const { RSA_PRIVATE_KEY } = require('./../jwtConfig');
+const createToken = user => {
+    return jwt.sign({id: user.id}, RSA_PRIVATE_KEY, {
+        algorithm: 'RS256',
+        expiresIn: 120000,
+        subject: 'Auth ID'
+    });
+};
 
 exports.home = (req, res) => {
     let query = 'SELECT challenger_user_id, creator_user_id, challenge_id, description, created_on, event_date, location_search, first_name, last_name, id ' +

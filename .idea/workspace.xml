@@ -6,11 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="ff891905-1380-4035-8b2a-1b7387cd8b60" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/db/pg-init.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db/pg-init.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.credentials.development.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/.credentials.development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/lib/handlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/lib/handlers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +38,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/client/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -58,6 +60,10 @@
       <workItem from="1610386971085" duration="1809000" />
       <workItem from="1610406051587" duration="108000" />
       <workItem from="1610406206862" duration="13034000" />
+      <workItem from="1610489620552" duration="278000" />
+      <workItem from="1610584963161" duration="418000" />
+      <workItem from="1610836126136" duration="365000" />
+      <workItem from="1613861940784" duration="1518000" />
     </task>
     <servers />
   </component>

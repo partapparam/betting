@@ -1,9 +1,7 @@
 const express = require('express');
 const port = process.env.port || 3000;
-const expressSession = require('express-session');
 //TODO
 const morgan = require('morgan');
-const bodyParser = require('body-parser');
 const cors = require('cors')
 const { credentials } = require('./config');
 
@@ -19,11 +17,7 @@ app.use(cors())
 app.use(express.json());
 //for application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
-app.use(expressSession({
-    resave: false,
-    saveUninitialized: false,
-    secret: credentials.sessionSecret
-}));
+
 
 require('./routes')(app)
 //create the 404 and server error middleware handlers
