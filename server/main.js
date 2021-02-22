@@ -23,7 +23,7 @@ require('./routes')(app)
 //create the 404 and server error middleware handlers
 app.use((req, res) => res.json({message: 'Error - 404', data: 'Not Found'}))
 app.use((err, req, res, next) => res.json({message: 'Error - 500', data: 'Server Error'}))
-
+//TODO - fix responses to status, add unautorized 401 method
 //start server function
 function startServer(port) {
     app.listen(port, () => {

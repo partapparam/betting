@@ -1,0 +1,24 @@
+<div class="container">
+  <form [formGroup]="signupForm" class="form mat-elevation-z5">
+    <h2>Signup</h2>
+    <mat-form-field appearance="fill" class="form-element">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput name="email" formControlName="email">
+    </mat-form-field>
+    <mat-form-field class="form-element" appearance="fill">
+      <mat-label>First Name</mat-label>
+      <input type="text" matInput name="firstName" formControlName="firstName">
+    </mat-form-field>
+    <mat-form-field class="form-element" appearance="fill">
+      <mat-label>Last Name</mat-label>
+      <input type="text" matInput name="lastName" formControlName="lastName">
+    </mat-form-field>
+    <mat-form-field class="form-element" appearance="fill">
+      <mat-label>Password</mat-label>
+      <input type="password" matInput name="password" formControlName="password">
+    </mat-form-field>
+    <div>
+      <button class="formButton" mat-raised-button color="primary" (click)="signup()">Sign Up</button>
+    </div>
+  </form>
+</div>
