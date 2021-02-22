@@ -31,10 +31,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscription = this.authService.login(values)
       .subscribe(response => {
         if (response.status === 'success') {
+          console.log(response);
           this.authService.setSession(response);
           return this.router.navigateByUrl('/');
         }
-        console.log('error loggin in');
+        console.log('error logging in', response);
         return this.loginForm.reset();
       }, error => {
         console.log(error);

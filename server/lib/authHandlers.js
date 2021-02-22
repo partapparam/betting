@@ -9,19 +9,27 @@ const createToken = user => {
     });
 };
 const validate = email => {
-    const query = 'SELECT * FROM users WHERE email.id = $1';
+    const query = 'SELECT * FROM users WHERE users.email = $1';
     return db.query(query, [email]);
 };
 
 exports.signup = (req, res) => {
-    const query = 'INSERT INTO users(first_name, last_name) VALUES $1, $2';
-    const {firstName, lastName} = req.body;
+    const query = `INSERT INTO users(email, first_name, last_name, password) VALUES ($1, $2, $3, $4)
+    RETURNING *`;
+    const {firstName, lastName, email, password} = req.body;
     if (!firstName) return res.json({status: 'error', data: 'Invalid form'});
-    db.query(query, [firstName, lastName])
-        .then(user => {
-            if (user) {
-                const token = createToken(user.id);
-                return res.json({status: 'success', data: token, expiresIn: 120000});
+    db.query(query, [email, firstName, lastName, password])
+        .then(response => {
+            const { rows } = response;
+            if (rows[0]) {
+                const user = rows[0];
+                const data = {
+                    firstName: user.first_name,
+                    lastName: user.last_name,
+                    email: user.email,
+                    token: createToken(user.id)
+                };
+                return res.json({status: 'success', data: data, expiresIn: 120000});
             }
             return res.json({status: 'error', data: 'Could not create user'});
         })
@@ -34,10 +42,18 @@ exports.login = (req, res) => {
     const { email, password } = req.body;
     if (!email) return res.json({status: 'error', data: 'Invalid email'});
     validate(email)
-        .then(user => {
-            if (user) {
-                const token = createToken(user.id);
-                return res.json({status: 'success', data: token, expiresIn: 120000});
+        .then(response => {
+            const { rows } = response
+            if (rows[0]) {
+                const user = rows[0];
+                const data = {
+                    firstName: user.first_name,
+                    lastName: user.last_name,
+                    email: user.email,
+                    token: createToken(user.id)
+                };
+                console.log(data);
+                return res.json({status: 'success', data: data, expiresIn: 120000});
             }
         })
         .catch(err => {

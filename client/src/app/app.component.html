@@ -1,6 +1,8 @@
-<nav>
-  <a>Home</a>
-  <a>How It works</a>
-  <a>Login/Signup</a>
+<nav class="navbar">
+  <a routerLink="">Betting</a>
+  <a routerLink="login" *ngIf="!(isLoggedIn$ | async)">Log In</a>
+  <a routerLink="signup" *ngIf="!(isLoggedIn$ | async)">Sign Up</a>
+<!--  <a routerLink="profile">Profile</a>-->
+  <a routerLink="" *ngIf="(isLoggedIn$ | async)" (click)="logout()">Logout</a>
 </nav>
 <router-outlet></router-outlet>

@@ -8,7 +8,9 @@ const createScript = `
 CREATE TABLE IF NOT EXISTS users(
 first_name VARCHAR(30) NOT NULL,
 id SERIAL PRIMARY KEY,
-last_name VARCHAR(30) NOT NULL
+last_name VARCHAR(30) NOT NULL,
+email VARCHAR(100) NOT NULL UNIQUE,
+password VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS challenges(
@@ -38,11 +40,11 @@ FOREIGN KEY (bet_challenge_id) REFERENCES challenges(challenge_id)
 
 const seedUsers = async client => {
     let query = `
-    INSERT INTO users (first_name, last_name) VALUES ($1, $2);
+    INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4);
     `
-    let p1 = client.query(query, ['param', 'singh'])
-    let p2 = client.query(query, ['justin', 'smith'])
-    let p3 = client.query(query, ['harry', 'yadav'])
+    let p1 = client.query(query, ['param', 'singh', '1@test.com', 'asd'])
+    let p2 = client.query(query, ['justin', 'smith', '2@test.com', 'asd'])
+    let p3 = client.query(query, ['harry', 'yadav', '3@test.com', 'asd'])
 
     await Promise.all([p1, p2, p3])
 }

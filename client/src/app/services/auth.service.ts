@@ -25,9 +25,10 @@ export class AuthService {
   }
 
   setSession(tokenData): void {
+    console.log(tokenData);
     const expiresIn = moment().add(tokenData.expiresIn, 'second');
-    localStorage.setItem('token', tokenData.data);
-    localStorage.setItem('expriresIn', JSON.stringify(expiresIn.valueOf()));
+    localStorage.setItem('token', tokenData.data.token);
+    localStorage.setItem('expiresIn', JSON.stringify(expiresIn.valueOf()));
     this.isLoggedIn();
   }
 
