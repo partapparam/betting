@@ -8,29 +8,26 @@ const createToken = user => {
         subject: 'Auth ID'
     });
 };
-
+// TODO - bring in lodash to convert to camelCase
 exports.home = (req, res) => {
-    let query = 'SELECT challenger_user_id, creator_user_id, challenge_id, description, created_on, event_date, location_search, first_name, last_name, id ' +
+    let query = 'SELECT challenger_user_id, creator_user_id, challenge_id, name, description, created_on, event_date, location_search, first_name, last_name, id ' +
         'FROM challenges ' +
         'LEFT JOIN users ' +
         'ON challenges.creator_user_id = users.id';
 
     db.query(query)
         .then(response => {
-            console.log('success')
-            res.status(200).json({
-                message: 'success',
-                data: response.rows
-            })
+            res.json(response.rows)
         })
         .catch(err => {
             console.log('error', err)
-            res.json({ message: 'fail' })
+            res.json({ status: 'fail', data: err})
         })
 }
 
 exports.getChallenge = (req, res) => {
-    let challengeId = req.params.id;
+    console.log('got request');
+    let challengeId = req.query.id;
     let data = {}
     let query = `SELECT * 
     FROM challenges
@@ -41,6 +38,7 @@ exports.getChallenge = (req, res) => {
     let betsQuery = `SELECT * FROM bets where bet_challenge_id = $1`
     db.getClient()
         .then(client => {
+            console.log('got client');
             client.query(query, [challengeId])
                 .then(response => {
                     response = response.rows[0]
@@ -57,9 +55,11 @@ exports.getChallenge = (req, res) => {
                         location_search: response.location_search,
                         bets: {}
                     }
+                    console.log('step one')
                     return data.challenger_user_id
                 })
                 .then(async id => {
+                    console.log('step 2');
                     return await Promise.all([
                         client.query(challengerQuery, [id]),
                         client.query(betsQuery, [challengeId])
@@ -71,14 +71,12 @@ exports.getChallenge = (req, res) => {
                     data.challenger_first_name = userResponse.first_name;
                     data.challenger_last_name = userResponse.last_name;
                     data.bets = betResponse;
-                    res.json({
-                        message: 'success',
-                        data: data
-                    })
+                    console.log('step 3')
+                    res.json(data);
                 })
                 .catch(err => {
                     console.log('ERRoR: ' + err)
-                    res.json({message: err})
+                    res.json({status: 'error', data: 'ERROR'})
                 })
                 //release the client back to the pool
                 .finally(() => client.release())

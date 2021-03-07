@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS challenges(
 challenger_user_id INT NULL,
 creator_user_id INT NOT NULL,
 challenge_id SERIAL PRIMARY KEY,
+name VARCHAR(200) NOT NULL,
 description TEXT NULL,
 created_on TIMESTAMPTZ NOT NULL,
 event_date TIMESTAMPTZ NOT NULL,
@@ -60,9 +61,9 @@ const seedBets = async client => {
 }
 
 const seedChallenges = async client => {
-    let query = `INSERT INTO challenges (creator_user_id, challenger_user_id, description, created_on, event_date, location_search) VALUES ($1, $2, $3, $4, $5, $6)`;
-    let p1 = client.query(query, [1, 2, 'Test Descrpition one', new Date(), new Date(), 'Los Angeles, CA'])
-    let p2 = client.query(query, [2, 3, 'Test Descrpition two', new Date(), new Date(), 'Tuscon, AZ'])
+    let query = `INSERT INTO challenges (creator_user_id, challenger_user_id, name, description, created_on, event_date, location_search) VALUES ($1, $2, $3, $4, $5, $6, $7)`;
+    let p1 = client.query(query, [1, 2, 'One mile run', 'Test Descrpition one', new Date(), new Date(), 'Los Angeles, CA'])
+    let p2 = client.query(query, [2, 3, 'Benching', 'Test Descrpition two', new Date(), new Date(), 'Tuscon, AZ'])
     await Promise.all([p1, p2])
 }
 

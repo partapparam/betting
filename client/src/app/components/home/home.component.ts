@@ -1,37 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import {HomeService} from "../../home.service";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Observable, Subscription} from "rxjs";
+import {ApiService} from "../../services/api.service";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
-
-  users = [];
-  challenges = [];
-  bets = [];
+export class HomeComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
+  challenges$: Observable<any>;
+  selectedId: number;
+  displayedColumns: string[] = ['name', 'description', 'locationSearch', 'eventDate'];
 
   constructor(
-    private hs: HomeService
+    private apiService: ApiService
   ) { }
 
   ngOnInit(): void {
-    this.loadUsers();
-  }
-  loadUsers(): void {
-    this.hs.getUsers()
-      .subscribe((data) => {
-        console.log(data);
-        this.users = data.data;
+    this.subscription = this.apiService.getHome()
+      .subscribe(res => {
+        console.log(res);
+        this.challenges$ = res;
       });
   }
-  loadChallenges(): void {
-    this.hs.getChallenges()
-      .subscribe(data => {
-        console.log(data);
-        this.challenges = data.data;
-      });
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

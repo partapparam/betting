@@ -1,9 +1,33 @@
-<p>home works!</p>
-<div *ngFor="let user of users">
-  {{user.first_name}}
-  {{user.last_name}}
-  {{user.id}}
+<h2>Challenges</h2>
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="challenges$">
+    <!-- email Column -->
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+      <mat-cell *matCellDef="let challenge"> {{challenge.description}} </mat-cell>
+    </ng-container>
+
+    <!-- Nmae Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Challenge </mat-header-cell>
+      <mat-cell *matCellDef="let challenge"> {{challenge.name}} </mat-cell>
+    </ng-container>
+
+    <!-- location Column -->
+    <ng-container matColumnDef="locationSearch">
+      <mat-header-cell *matHeaderCellDef> Location </mat-header-cell>
+      <mat-cell *matCellDef="let challenge"> {{challenge.location_search}} </mat-cell>
+    </ng-container>
+
+<!--    event date column   -->
+    <ng-container matColumnDef="eventDate">
+      <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+      <mat-cell *matCellDef="let challenge">{{challenge.event_date}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; let challenge; columns: displayedColumns;" [routerLink]="['challenge', challenge.challenge_id]">
+    </mat-row>
+  </mat-table>
 </div>
-<div *ngFor="let c of challenges">
-  {{c}}
-</div>
+

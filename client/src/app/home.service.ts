@@ -17,8 +17,8 @@ export class HomeService {
     return this.http.get<any>(URL + 'home');
   }
 
-  getChallenges(): Observable<any> {
-    return this.http.get<any>(URL + 'getChallenges');
+  getChallenge(): Observable<any> {
+    return this.http.get<any>(URL + 'getChallenge');
   }
 
   getBets(): Observable<any> {
